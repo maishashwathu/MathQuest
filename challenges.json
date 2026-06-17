@@ -1,0 +1,33 @@
+{
+  "_instructions": {
+    "how_to_update": "Every Monday, add a new object to the 'challenges' array. Set 'is_active' to true for the new one and false for all previous ones. The answer auto-reveals on day 7 based on 'posted_at'. Commit and push to GitHub — the site updates instantly.",
+    "date_format": "ISO 8601 — always use this exact format: YYYY-MM-DDTHH:MM:SSZ (UTC midnight on Monday)",
+    "difficulty_stars": "Integer 1 to 5 only",
+    "answer_reveal": "The answer becomes visible automatically after 7 days from posted_at. You do NOT need to do anything — JavaScript handles it."
+  },
+
+  "challenges": [
+    {
+      "id": 1,
+      "week_label": "Week 1 · June 2026",
+      "question": "A farmer has both chickens and rabbits. He counts 20 heads and 56 legs in total. How many chickens and how many rabbits does he have?",
+      "answer": "Let chickens = c and rabbits = r.\nEquation 1 (heads): c + r = 20\nEquation 2 (legs): 2c + 4r = 56\n\nFrom Eq 1: c = 20 − r\nSubstitute: 2(20 − r) + 4r = 56 → 40 + 2r = 56 → r = 8\n\n∴ Rabbits = 8, Chickens = 12 ✓\nVerify: (12×2) + (8×4) = 24 + 32 = 56 ✓",
+      "hint": "Set up two simultaneous equations — one for heads, one for legs.",
+      "difficulty": "Intermediate",
+      "difficulty_stars": 3,
+      "posted_at": "2026-06-02T00:00:00Z",
+      "is_active": false
+    },
+    {
+      "id": 2,
+      "week_label": "Week 2 · June 2026",
+      "question": "A two-digit number is such that the product of its digits is 18. When 27 is subtracted from the number, the digits interchange. Find the number.",
+      "answer": "Let the tens digit = a, units digit = b.\nCondition 1: a × b = 18\nCondition 2: (10a + b) − 27 = 10b + a\n→ 9a − 9b = 27 → a − b = 3 → a = b + 3\n\nSubstitute into Condition 1:\n(b + 3) × b = 18 → b² + 3b − 18 = 0\n→ (b + 6)(b − 3) = 0 → b = 3 (b must be positive)\n\n∴ b = 3, a = 6 → The number is 63 ✓\nVerify: 6 × 3 = 18 ✓ and 63 − 27 = 36 (digits interchanged) ✓",
+      "hint": "Let the digits be 'a' (tens) and 'b' (units). Form two equations from the two conditions.",
+      "difficulty": "Hard",
+      "difficulty_stars": 4,
+      "posted_at": "2026-06-09T00:00:00Z",
+      "is_active": true
+    }
+  ]
+}
