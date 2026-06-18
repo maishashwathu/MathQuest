@@ -38,7 +38,7 @@
    Replace both values below. Find them at:
    Supabase Dashboard → Settings → API
 ───────────────────────────────────────────────────────────── */
-var SUPABASE_URL      = 'https://abrgervesbaxsdvuyedd.supabase.co/rest/v1/';  // ← REPLACE
+var SUPABASE_URL      = 'https://abrgervesbaxsdvuyedd.supabase.co';  // ← REPLACE
 var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFicmdlcnZlc2JheHNkdnV5ZWRkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA4MjM5MDgsImV4cCI6MjA5NjM5OTkwOH0.ouaeWo1JXGMa1LOKk6voIoos7r-w744HvQeW__9Xdgo';
 
 /**
