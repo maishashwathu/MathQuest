@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MathQuest — Master Math, One Quest at a Time</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Syne (display) + DM Sans (body) — distinctive, clean pairing -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       HEADER / NAVBAR
+  ═══════════════════════════════════════════════════════════ -->
+  <header class="site-header" id="site-header">
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <a href="#hero" class="nav-logo" aria-label="MathQuest Home">
+        <!-- Replace with your actual logo file (recommended: SVG or PNG, ~160×40px) -->
+        <!-- Logo: bright neon cyan text "MathQuest" with a small rocket or orbit icon to the left -->
+        <img src="assets/logo.png" alt="MathQuest Logo" class="logo-img" onerror="this.style.display='none'" />
+        <span class="logo-text">Math<span class="logo-accent">Quest</span></span>
+      </a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+      <ul class="nav-links" id="nav-links" role="list">
+        <li><a href="#grades" class="nav-link">Grades</a></li>
+        <li><a href="#challenge" class="nav-link">Challenge</a></li>
+        <li><a href="#sheets" class="nav-link">Practice Sheets</a></li>
+        <li><a href="#hub" class="nav-link">Request / Feedback</a></li>
+        <li><a href="#hub" class="nav-link nav-cta">Get Sheets</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ═══════════════════════════════════════════════════════════
+         HERO SECTION
+    ═══════════════════════════════════════════════════════════ -->
+    <section class="hero" id="hero" aria-label="Hero section">
+      <!-- Animated star-field canvas sits behind everything -->
+      <canvas class="star-canvas" id="star-canvas" aria-hidden="true"></canvas>
+
+      <!-- Decorative floating orbs -->
+      <div class="orb orb--cyan" aria-hidden="true"></div>
+      <div class="orb orb--purple" aria-hidden="true"></div>
+      <div class="orb orb--small" aria-hidden="true"></div>
+
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="badge-dot" aria-hidden="true"></span>
+          Grades 5 – 8 &nbsp;·&nbsp; Free Practice Sheets
+        </div>
+
+        <h1 class="hero-heading">
+          Master Math,<br />
+          <span class="heading-gradient">One Quest</span><br />
+          at a Time.
+        </h1>
+
+        <p class="hero-subtext">
+          Level up your skills with expert-crafted worksheets, answer keys,<br class="desktop-br" />
+          and weekly brain challenges — all completely free.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#grades" class="btn btn--primary" id="hero-cta">
+            <span>Start Your Quest</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="#challenge" class="btn btn--ghost">
+            <span>Weekly Challenge</span>
+          </a>
+        </div>
+
+        <div class="hero-stats" role="list" aria-label="Platform statistics">
+          <div class="stat-item" role="listitem">
+            <span class="stat-number" data-target="120">0</span><span class="stat-suffix">+</span>
+            <span class="stat-label">Worksheets</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat-item" role="listitem">
+            <span class="stat-number" data-target="4">0</span>
+            <span class="stat-label">Grade Levels</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat-item" role="listitem">
+            <span class="stat-number" data-target="100">0</span><span class="stat-suffix">%</span>
+            <span class="stat-label">Free Always</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero illustration (right side on desktop) -->
+      <div class="hero-visual" aria-hidden="true">
+        <!-- Replace with a stylized illustration of a student/astronaut doing math in space
+             Recommended: SVG or PNG with transparent background, roughly 520×520px -->
+        <!-- Illustration: cartoon astronaut sitting cross-legged, holding a glowing tablet with equations floating around them -->
+        <img src="assets/hero-illustration.png" alt="Student astronaut doing math in space" class="hero-img" />
+        <!-- Floating equation badges around the illustration -->
+        <div class="float-badge float-badge--1" aria-hidden="true">x² + y² = r²</div>
+        <div class="float-badge float-badge--2" aria-hidden="true">∑ = ?</div>
+        <div class="float-badge float-badge--3" aria-hidden="true">π ≈ 3.14</div>
+        <div class="float-badge float-badge--4" aria-hidden="true">½ × base × h</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         GRADE NAVIGATION / SKILL TREE
+    ═══════════════════════════════════════════════════════════ -->
+    <section class="grades-section" id="grades" aria-labelledby="grades-heading">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-tag">Choose Your Level</span>
+          <h2 class="section-heading" id="grades-heading">Your <span class="text-gradient">Math Roadmap</span></h2>
+          <p class="section-subtext">Select your grade to unlock your personalised practice sheet collection.</p>
+        </div>
+
+        <div class="grade-grid" id="grade-grid" role="list" aria-label="Grade selection">
+
+          <!-- Grade 5 Card -->
+          <article class="grade-card" id="grade-card-5" role="listitem" tabindex="0" aria-label="Grade 5 — Explorer" data-grade="5">
+            <div class="grade-card-glow grade-card-glow--5" aria-hidden="true"></div>
+            <!-- Icon: Rocket launching, representing the start of the journey -->
+            <!-- Replace with a small PNG/SVG icon (80×80px) of a cartoon rocket -->
+            <img src="assets/icons/grade5-icon.png" alt="" class="grade-icon" aria-hidden="true" onerror="this.style.display='none'" />
+            <div class="grade-card-inner">
+              <div class="grade-badge">Grade 5</div>
+              <h3 class="grade-title">Explorer</h3>
+              <p class="grade-desc">Fractions, Decimals, Geometry Basics, Measurement, etc...</p>
+              <button class="btn btn--card" data-grade="5" aria-label="View Grade 5 practice sheets">
+                View Sheets
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+            </div>
+            <div class="grade-number-bg" aria-hidden="true">5</div>
+          </article>
+
+          <!-- Grade 6 Card -->
+          <article class="grade-card grade-card--featured" id="grade-card-6" role="listitem" tabindex="0" aria-label="Grade 6 — Pioneer" data-grade="6">
+            <div class="grade-card-glow grade-card-glow--6" aria-hidden="true"></div>
+            <div class="featured-ribbon" aria-label="Most Popular">Most Popular</div>
+            <!-- Replace with a small PNG/SVG icon (80×80px) of a planet or compass -->
+            <img src="assets/icons/grade6-icon.png" alt="" class="grade-icon" aria-hidden="true" onerror="this.style.display='none'" />
+            <div class="grade-card-inner">
+              <div class="grade-badge grade-badge--featured">Grade 6</div>
+              <h3 class="grade-title">Pioneer</h3>
+              <p class="grade-desc">Integers, Ratio & Proportion, Basic Algebra, Perimeter & Area, Data Handling.</p>
+              <button class="btn btn--card btn--card-featured" data-grade="6" aria-label="View Grade 6 practice sheets">
+                View Sheets
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+            </div>
+            <div class="grade-number-bg" aria-hidden="true">6</div>
+          </article>
+
+          <!-- Grade 7 Card -->
+          <article class="grade-card" id="grade-card-7" role="listitem" tabindex="0" aria-label="Grade 7 — Voyager" data-grade="7">
+            <div class="grade-card-glow grade-card-glow--7" aria-hidden="true"></div>
+            <!-- Replace with a small PNG/SVG icon (80×80px) of a telescope or star constellation -->
+            <img src="assets/icons/grade7-icon.png" alt="" class="grade-icon" aria-hidden="true" onerror="this.style.display='none'" />
+            <div class="grade-card-inner">
+              <div class="grade-badge">Grade 7</div>
+              <h3 class="grade-title">Voyager</h3>
+              <p class="grade-desc">Linear Equations, Triangles, Rational Numbers, Mensuration, Probability.</p>
+              <button class="btn btn--card" data-grade="7" aria-label="View Grade 7 practice sheets">
+                View Sheets
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+            </div>
+            <div class="grade-number-bg" aria-hidden="true">7</div>
+          </article>
+
+          <!-- Grade 8 Card -->
+          <article class="grade-card" id="grade-card-8" role="listitem" tabindex="0" aria-label="Grade 8 — Commander" data-grade="8">
+            <div class="grade-card-glow grade-card-glow--8" aria-hidden="true"></div>
+            <!-- Replace with a small PNG/SVG icon (80×80px) of a galaxy or solar system -->
+            <img src="assets/icons/grade8-icon.png" alt="" class="grade-icon" aria-hidden="true" onerror="this.style.display='none'" />
+            <div class="grade-card-inner">
+              <div class="grade-badge grade-badge--purple">Grade 8</div>
+              <h3 class="grade-title">Commander</h3>
+              <p class="grade-desc">Quadratics, Pythagoras, Exponents, Coordinate Geometry, Statistics.</p>
+              <button class="btn btn--card" data-grade="8" aria-label="View Grade 8 practice sheets">
+                View Sheets
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+            </div>
+            <div class="grade-number-bg" aria-hidden="true">8</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         CHALLENGE OF THE WEEK
+    ═══════════════════════════════════════════════════════════ -->
+    <section class="challenge-section" id="challenge" aria-labelledby="challenge-heading">
+      <div class="section-container">
+        <div class="challenge-card" role="region" aria-label="Challenge of the Week">
+          <div class="challenge-card-bg" aria-hidden="true"></div>
+
+          <div class="challenge-left">
+            <div class="challenge-tag">
+              <!-- Replace with a small flame/lightning bolt icon (24×24px) -->
+              <img src="assets/icons/challenge-icon.png" alt="" aria-hidden="true" onerror="this.style.display='none'" />
+              <span>Challenge of the Week</span>
+            </div>
+            <h2 class="challenge-heading" id="challenge-heading">Can You Crack This?</h2>
+            <div class="challenge-difficulty">
+              <span class="diff-label">Difficulty:</span>
+              <span class="diff-star" aria-label="Difficulty 3 out of 5 stars">★★★☆☆</span>
+              <span class="diff-level">Intermediate</span>
+            </div>
+            <blockquote class="challenge-riddle" id="challenge-riddle" aria-live="polite">
+              <p>A farmer has both <strong>chickens</strong> and <strong>rabbits</strong>. He counts <strong>20 heads</strong> and <strong>56 legs</strong> in total. How many chickens and how many rabbits does he have?</p>
+            </blockquote>
+            <div class="challenge-hint">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              <span>Hint: Set up two simultaneous equations using heads and legs.</span>
+            </div>
+          </div>
+
+          <div class="challenge-right">
+            <!-- Replace with an illustration of a cartoon brain with a lightbulb or puzzle pieces (300×300px PNG) -->
+            <img src="assets/challenge-illustration.png" alt="Brain puzzle illustration" class="challenge-img" onerror="this.style.display='none'" />
+
+            <div class="challenge-answer-wrapper">
+              <div class="challenge-answer hidden" id="challenge-answer" aria-hidden="true" role="region" aria-label="Challenge answer">
+                <div class="answer-label">Answer Revealed!</div>
+                <p class="answer-text">
+                  Let chickens = c, rabbits = r.<br />
+                  c + r = 20 &nbsp;&amp;&amp;&nbsp; 2c + 4r = 56<br />
+                  → 2(20 − r) + 4r = 56 → 40 + 2r = 56 → r = 8<br />
+                  ∴ <strong>8 rabbits</strong> and <strong>12 chickens</strong>. ✓
+                </p>
+              </div>
+
+              <button class="btn btn--reveal" id="reveal-btn" aria-expanded="false" aria-controls="challenge-answer">
+                <span class="reveal-btn-text">Reveal Answer</span>
+                <svg class="reveal-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+
+              <p class="challenge-refresh-note">
+                New challenge every Monday. Come back for more!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         PRACTICE SHEETS DASHBOARD
+    ═══════════════════════════════════════════════════════════ -->
+    <section class="sheets-section" id="sheets" aria-labelledby="sheets-heading">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-tag">Free Downloads</span>
+          <h2 class="section-heading" id="sheets-heading">Practice <span class="text-gradient">Sheet Library</span></h2>
+          <p class="section-subtext">Click a grade below to browse all available worksheets and answer keys.</p>
+        </div>
+
+        <!-- Tab bar -->
+        <div class="sheets-tabs" role="tablist" aria-label="Grade tabs">
+          <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="panel-grade-5" id="tab-5" data-tab="5">Grade 5</button>
+          <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-grade-6" id="tab-6" data-tab="6">Grade 6</button>
+          <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-grade-7" id="tab-7" data-tab="7">Grade 7</button>
+          <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-grade-8" id="tab-8" data-tab="8">Grade 8</button>
+        </div>
+
+        <!-- ─── GRADE 5 PANEL ─── -->
+        <div class="tab-panel active" id="panel-grade-5" role="tabpanel" aria-labelledby="tab-5">
+          <div class="topic-grid">
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--cyan">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                </div>
+                <div>
+                  <h3 class="topic-title">Place Value & Large Numbers</h3>
+                  <span class="topic-level">Foundational</span>
+                </div>
+              </div>
+              <p class="topic-description">Place value, face value, expanded form, number names, comparing and ordering numbers, rounding and estimation.</p>
+              <div class="topic-actions">
+                <a href= "assets\Worksheets\Grade5\NCERT_Grade5_Maths_Worksheet_Book-4-7.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 5 Place Value Practice Sheet PDF">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Practice Sheet
+                </a>
+                <a href="assets\Worksheets\Grade5\NCERT_Grade5_Maths_Worksheet_Book-64-81.pdf" download aria-label="Download Grade 5 Place Value Answer Key PDF">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  Answer Key
+                </a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--purple">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                </div>
+                <div>
+                  <h3 class="topic-title">Rounding and estimation</h3>
+                  <span class="topic-level">Foundational</span>
+                </div>
+              </div>
+              <p class="topic-description">Multi-digit addition and subtraction, estimation, mental maths, word problems, checking answers.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade5\NCERT_Grade5_Maths_Worksheet_Book-8-11.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 5 Rounding and Estimation Practice Sheet PDF">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Practice Sheet
+                </a>
+                <a href="assets\Worksheets\Grade5\NCERT_Grade5_Maths_Worksheet_Book-64-81.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 5 Rounding and Estimation Answer Key PDF">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  Answer Key
+                </a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--cyan">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+                </div>
+                <div>
+                  <h3 class="topic-title">Addition of large numbers</h3>
+                  <span class="topic-level">Foundational</span>
+                </div>
+              </div>
+              <p class="topic-description">Long multiplication, long division, divisibility, quotient and remainder, real-life applications.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade5\NCERT_Grade5_Maths_Worksheet_Book-12-15.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 5 Addition of Large Numbers Practice Sheet PDF">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Practice Sheet
+                </a>
+                <a href="assets\Worksheets\Grade5\NCERT_Grade5_Maths_Worksheet_Book-64-81.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 5 Addition of Large Numbers Answer Key PDF">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  Answer Key
+                </a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--purple">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/></svg>
+                </div>
+                <div>
+                  <h3 class="topic-title">Fractions</h3>
+                  <span class="topic-level">Foundational</span>
+                </div>
+              </div>
+              <p class="topic-description">Equivalent fractions, comparing fractions, mixed and improper fractions, addition and subtraction of fractions.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade5\NCERT_Grade5_Maths_Worksheet_Book-16-19.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 5 Fractions Practice Sheet PDF">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Practice Sheet
+                </a>
+                <a href="assets\Worksheets\Grade5\NCERT_Grade5_Maths_Worksheet_Book-64-81.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 5 Fractions Answer Key PDF">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  Answer Key
+                </a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--cyan">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                </div>
+                <div>
+                  <h3 class="topic-title">Subtraction of Large Numbers</h3>
+                  <span class="topic-level">Foundational</span>
+                </div>
+              </div>
+              <p class="topic-description">Subtraction with large numbers, borrowing/regrouping, estimation, checking answers and real-life word problems.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade5\NCERT_Grade5_Maths_Worksheet_Book-20-23.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 5 Subtraction of Large Numbers Practice Sheet PDF">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Practice Sheet
+                </a>
+                <a href="assets\Worksheets\Grade5\NCERT_Grade5_Maths_Worksheet_Book-64-81.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 5 Subtraction of Large Numbers Answer Key PDF">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  Answer Key
+                </a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--purple">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                </div>
+                <div>
+                  <h3 class="topic-title">Comparing fractions & Equivalent fractions</h3>
+                  <span class="topic-level">Foundational</span>
+                </div>
+              </div>
+              <p class="topic-description">Comparing and ordering fractions, identifying equivalent fractions, and solving word problems.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade5\NCERT_Grade5_Maths_Worksheet_Book-24-27.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 5 Fractions Practice Sheet PDF">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Practice Sheet
+                </a>
+                <a href="assets\Worksheets\Grade5\NCERT_Grade5_Maths_Worksheet_Book-64-81.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 5 Fractions Answer Key PDF">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  Answer Key
+                </a>
+              </div>
+            </div>
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--cyan">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                </div>
+                <div>
+                  <h3 class="topic-title">Angles and turns</h3>
+                  <span class="topic-level">Foundational</span>
+                </div>
+              </div>
+              <p class="topic-description">Understanding angles and turns, and their applications in geometry.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade5\NCERT_Grade5_Maths_Worksheet_Book-28-31.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 5 Angles and Turns Practice Sheet PDF">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Practice Sheet
+                </a>
+                <a href="assets\Worksheets\Grade5\NCERT_Grade5_Maths_Worksheet_Book-64-81.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 5 Angles and Turns Answer Key PDF">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  Answer Key
+                </a>
+              </div>
+            </div>
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--purple">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                </div>
+                <div>
+                  <h3 class="topic-title">Measuring Distance</h3>
+                  <span class="topic-level">Foundational</span>
+                </div>
+              </div>
+              <p class="topic-description">Measuring and comparing distances, and their applications in geometry.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade5\NCERT_Grade5_Maths_Worksheet_Book-32-35.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 5 Measuring Distance Practice Sheet PDF">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Practice Sheet
+                </a>
+                <a href="assets\Worksheets\Grade5\NCERT_Grade5_Maths_Worksheet_Book-64-81.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 5 Measuring Distance Answer Key PDF">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  Answer Key
+                </a>
+              </div>
+            </div>
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--cyan">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+                </div>
+                <div>
+                  <h3 class="topic-title">Multiplication and arrays</h3>
+                  <span class="topic-level">Foundational</span>
+                </div>
+              </div>
+              <p class="topic-description">Understanding multiplication as repeated addition and using arrays to represent multiplication problems.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade5\NCERT_Grade5_Maths_Worksheet_Book-36-39.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 5 Multiplication and Arrays Practice Sheet PDF">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Practice Sheet
+                </a>
+                <a href="assets\Worksheets\Grade5\NCERT_Grade5_Maths_Worksheet_Book-64-81.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 5 Multiplication and Arrays Answer Key PDF">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  Answer Key
+                </a>
+              </div>
+            </div>
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--purple">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/></svg>
+                </div>
+                <div>
+                  <h3 class="topic-title">Multiplication word problems</h3>
+                  <span class="topic-level">Foundational</span>
+                </div>
+              </div>
+              <p class="topic-description">Solving word problems involving multiplication of whole numbers.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade5\NCERT_Grade5_Maths_Worksheet_Book-40-43.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 5 Multiplication Word Problems Practice Sheet PDF">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Practice Sheet
+                </a>
+                <a href="assets\Worksheets\Grade5\NCERT_Grade5_Maths_Worksheet_Book-64-81.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 5 Multiplication Word Problems Answer Key PDF">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  Answer Key
+                </a>
+              </div>
+            </div>
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--cyan">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                </div>
+                <div>
+                  <h3 class="topic-title">Division Basics</h3>
+                  <span class="topic-level">Foundational</span>
+                </div>
+              </div>
+              <p class="topic-description">Solving problems involving division of whole numbers.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade5\NCERT_Grade5_Maths_Worksheet_Book-44-47.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 5 Division Practice Sheet PDF">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Practice Sheet
+                </a>
+                <a href="assets\Worksheets\Grade5\NCERT_Grade5_Maths_Worksheet_Book-64-81.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 5 Division Answer Key PDF">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  Answer Key
+                </a>
+              </div>
+            </div>
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--purple">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                </div>
+                <div>
+                  <h3 class="topic-title">Division word Problems</h3>
+                  <span class="topic-level">Foundational</span>
+                </div>
+              </div>
+              <p class="topic-description">Solving word problems involving division of whole numbers.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade5\NCERT_Grade5_Maths_Worksheet_Book-48-51.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 5 Division Practice Sheet PDF">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Practice Sheet
+                </a>
+                <a href="assets\Worksheets\Grade5\NCERT_Grade5_Maths_Worksheet_Book-64-81.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 5 Division Answer Key PDF">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  Answer Key
+                </a>
+              </div>
+            </div>
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--cyan">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                </div>
+                <div>
+                  <h3 class="topic-title">Patterns and sequences</h3>
+                  <span class="topic-level">Foundational</span>
+                </div>
+              </div>
+              <p class="topic-description">Identifying and extending patterns, and solving problems involving sequences.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade5\NCERT_Grade5_Maths_Worksheet_Book-52-55.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 5 Sequences Practice Sheet PDF">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Practice Sheet
+                </a>
+                <a href="assets\Worksheets\Grade5\NCERT_Grade5_Maths_Worksheet_Book-64-81.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 5 Sequences Answer Key PDF">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  Answer Key
+                </a>
+              </div>
+            </div>
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--purple">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                </div>
+                <div>
+                  <h3 class="topic-title">2D Shapes</h3>
+                  <span class="topic-level">Foundational</span>
+                </div>
+              </div>
+              <p class="topic-description">Identifying and classifying 2D shapes, understanding their properties, and solving problems involving area and perimeter.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade5\NCERT_Grade5_Maths_Worksheet_Book-56-59.pdf" download aria-label="Download Grade 5 2D Shapes Practice Sheet PDF">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Practice Sheet
+                </a>
+                <a href="assets\Worksheets\Grade5\NCERT_Grade5_Maths_Worksheet_Book-64-81.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 5 2D Shapes Answer Key PDF">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  Answer Key
+                </a>
+              </div>
+            </div>
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--cyan">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+                </div>
+                <div>
+                  <h3 class="topic-title">3D Shapes</h3>
+                  <span class="topic-level">Foundational</span>
+                </div>
+              </div>
+              <p class="topic-description">Identifying and classifying 3D shapes, understanding their properties, and solving problems involving surface area and volume.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade 5\NCERT_Grade5_Maths_Worksheet_Book-60-63.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 5 3D Shapes Practice Sheet PDF">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Practice Sheet
+                </a>
+                <a href="assets\Worksheets\Grade5\NCERT_Grade5_Maths_Worksheet_Book-64-81.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 5 3D Shapes Answer Key PDF">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  Answer Key
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ─── GRADE 6 PANEL ─── -->
+        <div class="tab-panel" id="panel-grade-6" role="tabpanel" aria-labelledby="tab-6" hidden>
+          <div class="topic-grid">
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--cyan"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="7" height="7"/><rect x="9" y="5" width="7" height="7"/><rect x="16" y="5" width="7" height="7"/><rect x="2" y="12" width="7" height="7"/><rect x="9" y="12" width="7" height="7"/><rect x="16" y="12" width="7" height="7"/></svg></div>
+                <div><h3 class="topic-title">Patterns in Mathematics</h3><span class="topic-level">Intermediate</span></div>
+              </div>
+              <p class="topic-description">Number patterns, shape patterns, sequences, relationships and logical reasoning.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade6\grade6_math_worksheets-3-6.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 6 Integers Practice Sheet PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Practice Sheet</a>
+                <a href="assets\Worksheets\Grade6\grade6_math_worksheets-44-52.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 6 Integers Answer Key PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Answer Key</a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--purple"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 18L18 18"/><path d="M4 18L14 6"/><circle cx="4" cy="18" r="1"/></svg></div>
+                <div><h3 class="topic-title">Lines and Angles</h3><span class="topic-level">Intermediate</span></div>
+              </div>
+              <p class="topic-description">Points, line segments, rays, angles, angle measurement and angle types.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade6\grade6_math_worksheets-7-10.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 6 Ratio and Proportion Practice Sheet PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Practice Sheet</a>
+                <a href="assets\Worksheets\Grade6\grade6_math_worksheets-44-52.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 6 Ratio and Proportion Answer Key PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Answer Key</a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--cyan"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 5L5 8L8 11"/><path d="M16 13L19 16L16 19"/><path d="M10 19L14 5"/></svg></div>
+                <div><h3 class="topic-title">Number Play</h3><span class="topic-level">Intermediate</span></div>
+              </div>
+              <p class="topic-description">Number properties, digit patterns, palindromes, number lines and place value concepts.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade6\grade6_math_worksheets-11-14.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 6 Basic Algebra Practice Sheet PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Practice Sheet</a>
+                <a href="assets\Worksheets\Grade6\grade6_math_worksheets-44-52.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 6 Basic Algebra Answer Key PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Answer Key</a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--purple"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/><line x1="2" y1="16" x2="22" y2="16"/><line x1="8" y1="10" x2="8" y2="22"/><line x1="14" y1="10" x2="14" y2="22"/></svg></div>
+                <div><h3 class="topic-title">Data Handling and Presentation</h3><span class="topic-level">Intermediate</span></div>
+              </div>
+              <p class="topic-description">Data collection, tally charts, pictographs, bar graphs and interpretation.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade6\grade6_math_worksheets-15-18.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 6 Perimeter and Area Practice Sheet PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Practice Sheet</a>
+                <a href="assets\Worksheets\Grade6\grade6_math_worksheets-44-52.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 6 Perimeter and Area Answer Key PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Answer Key</a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--cyan"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg></div>
+                <div><h3 class="topic-title">Prime Time</h3><span class="topic-level">Intermediate</span></div>
+              </div>
+              <p class="topic-description">Prime numbers, factors, multiples, prime factorisation, divisibility tests, HCF and LCM.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade6\grade6_math_worksheets-19-22.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 6 Data Handling Practice Sheet PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Practice Sheet</a>
+                <a href="assets\Worksheets\Grade6\grade6_math_worksheets-44-52.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 6 Data Handling Answer Key PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Answer Key</a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--purple"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="5" width="14" height="14"/><path d="M5 3V1"/><path d="M19 3V1"/><path d="M3 5H1"/><path d="M3 19H1"/></svg></div>
+                <div><h3 class="topic-title">Perimeter and Area</h3><span class="topic-level">Intermediate</span></div>
+              </div>
+              <p class="topic-description">Perimeter, area, area of rectangles and triangles, real-world applications.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade6\grade6_math_worksheets-23-26.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 6 Percentages Practice Sheet PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Practice Sheet</a>
+                <a href="assets\Worksheets\Grade6\grade6_math_worksheets-44-52.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 6 Percentages Answer Key PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Answer Key</a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--cyan"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 5L16 19"/><circle cx="7" cy="8" r="2"/><circle cx="17" cy="16" r="2"/></svg></div>
+                <div><h3 class="topic-title">Fractions</h3><span class="topic-level">Intermediate</span></div>
+              </div>
+              <p class="topic-description">Equivalent fractions, comparison, simplification and operations with fractions.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade6\grade6_math_worksheets-27-30.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 6 Percentages Practice Sheet PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Practice Sheet</a>
+                <a href="assets\Worksheets\Grade6\grade6_math_worksheets-44-52.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 6 Percentages Answer Key PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Answer Key</a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--purple"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="2"/><path d="M10 7L5 20"/><path d="M14 7L19 20"/><path d="M8 15H16"/></svg></div>
+                <div><h3 class="topic-title">Playing with Constructions</h3><span class="topic-level">Intermediate</span></div>
+              </div>
+              <p class="topic-description">Constructing lines, shapes, squares, rectangles and exploring geometric properties.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade6\grade6_math_worksheets-31-35.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 6 Percentages Practice Sheet PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Practice Sheet</a>
+                <a href="assets\Worksheets\Grade6\grade6_math_worksheets-44-52.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 6 Percentages Answer Key PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Answer Key</a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--cyan"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="3" x2="12" y2="21"/><path d="M6 6L10 10L6 14"/><path d="M18 6L14 10L18 14"/></svg></div>
+                <div><h3 class="topic-title">Symmetry</h3><span class="topic-level">Intermediate</span></div>
+              </div>
+              <p class="topic-description">Line symmetry, rotational symmetry and symmetrical designs.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade6\grade6_math_worksheets-36-39.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 6 Percentages Practice Sheet PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Practice Sheet</a>
+                <a href="assets\Worksheets\Grade6\grade6_math_worksheets-44-52.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 6 Percentages Answer Key PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Answer Key</a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--purple"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="12" x2="22" y2="12"/><line x1="12" y1="7" x2="12" y2="17"/><path d="M5 10V14"/><path d="M19 10V14"/></svg></div>
+                <div><h3 class="topic-title">The Other Side of Zero</h3><span class="topic-level">Intermediate</span></div>
+              </div>
+              <p class="topic-description">Positive and negative numbers, number line, ordering and operations with integers.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade6\grade6_math_worksheets-40-43.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 6 Percentages Practice Sheet PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Practice Sheet</a>
+                <a href="assets\Worksheets\Grade6\grade6_math_worksheets-44-52.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 6 Percentages Answer Key PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Answer Key</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ─── GRADE 7 PANEL ─── -->
+        <div class="tab-panel" id="panel-grade-7" role="tabpanel" aria-labelledby="tab-7" hidden>
+          <div class="topic-grid">
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--cyan"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="4" x2="6" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/><line x1="18" y1="4" x2="18" y2="20"/><circle cx="6" cy="8" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="18" cy="16" r="2"/></svg></div>
+                <div><h3 class="topic-title"> Large Numbers Around Us</h3><span class="topic-level">Advanced</span></div>
+              </div>
+              <p class="topic-description">Indian and International numbering systems, place value, reading/writing large numbers, rounding and estimation, comparing and ordering numbers, forming largest/smallest numbers from digits, real-world number contexts (population, distance, budgets)</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade7\NCERT_Grade7_Maths_Worksheet_Book-4-7.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 7 Linear Equations Practice Sheet PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Practice Sheet</a>
+                <a href="assets\Worksheets\Grade7\NCERT_Grade7_Maths_Worksheet_Book-68-86.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 7 Linear Equations Answer Key PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Answer Key</a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--purple"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14"/><path d="M5 12h14"/><path d="M5 5l14 14"/></svg></div>
+                <div><h3 class="topic-title">Arithmetic Expressions</h3><span class="topic-level">Advanced</span></div>
+              </div>
+              <p class="topic-description">Order of operations (BODMAS), use of brackets, evaluating numerical expressions, forming expressions from real-life billing situations.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade7\NCERT_Grade7_Maths_Worksheet_Book-8-11.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 7 Triangles Practice Sheet PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Practice Sheet</a>
+                <a href="assets\Worksheets\Grade7\NCERT_Grade7_Maths_Worksheet_Book-68-86.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 7 Triangles Answer Key PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Answer Key</a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--cyan"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="7" cy="12" r="1.5"/><line x1="12" y1="7" x2="12" y2="17"/><line x1="17" y1="7" x2="17" y2="17"/></svg></div>
+                <div><h3 class="topic-title">A Peek Beyond the Point</h3><span class="topic-level">Advanced</span></div>
+              </div>
+              <p class="topic-description">Decimal place value (tenths, hundredths, thousandths), fraction-to-decimal and decimal-to-fraction conversion, rounding decimals, comparing/ordering decimals, decimal addition/subtraction/multiplication/division, money and measurement applications.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade7\NCERT_Grade7_Maths_Worksheet_Book-12-15.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 7 Rational Numbers Practice Sheet PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Practice Sheet</a>
+                <a href="assets\Worksheets\Grade7\NCERT_Grade7_Maths_Worksheet_Book-68-86.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 7 Rational Numbers Answer Key PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Answer Key</a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--purple"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 6l6 12"/><path d="M11 6L5 18"/><path d="M17 6v8"/><path d="M13 10h8"/></svg></div>
+                <div><h3 class="topic-title">Expressions Using Letter-Numbers</h3><span class="topic-level">Advanced</span></div>
+              </div>
+              <p class="topic-description">Variables as letter-numbers, terms/coefficients/constants, forming algebraic expressions from statements, evaluating expressions by substitution, simplifying like terms.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade7\NCERT_Grade7_Maths_Worksheet_Book-16-19.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 7 Expressions Using Letter-Numbers Practice Sheet PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Practice Sheet</a>
+                <a href="assets\Worksheets\Grade7\NCERT_Grade7_Maths_Worksheet_Book-68-86.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 7 Expressions Using Letter-Numbers Answer Key PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Answer Key</a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--cyan"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="4" x2="5" y2="20"/><line x1="11" y1="4" x2="11" y2="20"/><line x1="16" y1="5" x2="22" y2="19"/></svg></div>
+                <div><h3 class="topic-title">Parallel and Intersecting Lines</h3><span class="topic-level">Advanced</span></div>
+              </div>
+              <p class="topic-description">Vertically opposite angles, linear pair, angles formed by a transversal on parallel lines (corresponding, alternate interior, co-interior), algebraic angle-finding problems</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade7\NCERT_Grade7_Maths_Worksheet_Book-20-23.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 7 Probability Practice Sheet PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Practice Sheet</a>
+                <a href="assets\Worksheets\Grade7\NCERT_Grade7_Maths_Worksheet_Book-68-86.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 7 Probability Answer Key PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Answer Key</a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--purple"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16"/><line x1="4" y1="10" x2="20" y2="10"/><line x1="10" y1="4" x2="10" y2="20"/></svg></div>
+                <div><h3 class="topic-title">Number Play</h3><span class="topic-level">Advanced</span></div>
+              </div>
+              <p class="topic-description">Divisibility rules, prime and composite numbers, prime factorisation, HCF and LCM, number patterns, real-life grouping and scheduling problems.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade7\NCERT_Grade7_Maths_Worksheet_Book-24-27.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 7 Exponents and Powers Practice Sheet PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Practice Sheet</a>
+                <a href="assets\Worksheets\Grade7\NCERT_Grade7_Maths_Worksheet_Book-68-86.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 7 Exponents and Powers Answer Key PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Answer Key</a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--cyan"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12,4 20,18 4,18"/></svg></div>
+                <div><h3 class="topic-title">A Tale of Three Intersecting Lines</h3><span class="topic-level">Advanced</span></div>
+              </div>
+              <p class="topic-description">Classification of triangles by sides and angles, angle sum property, exterior angle theorem, triangle inequality.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade7\NCERT_Grade7_Maths_Worksheet_Book-28-31.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 7 Exponents and Powers Practice Sheet PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Practice Sheet</a>
+                <a href="assets\Worksheets\Grade7\NCERT_Grade7_Maths_Worksheet_Book-68-86.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 7 Exponents and Powers Answer Key PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Answer Key</a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--purple"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="7" cy="7" r="2"/><line x1="8" y1="16" x2="16" y2="8"/><circle cx="17" cy="17" r="2"/></svg></div>
+                <div><h3 class="topic-title">Working with Fractions</h3><span class="topic-level">Advanced</span></div>
+              </div>
+              <p class="topic-description">Addition, subtraction, multiplication and division of fractions and mixed numbers, reciprocals, recipe-scaling and measurement word problems.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade7\NCERT_Grade7_Maths_Worksheet_Book-32-35.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 7 Exponents and Powers Practice Sheet PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Practice Sheet</a>
+                <a href="assets\Worksheets\Grade7\NCERT_Grade7_Maths_Worksheet_Book-68-86.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 7 Exponents and Powers Answer Key PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Answer Key</a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--cyan"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" y1="12" x2="22" y2="12"/><line x1="12" y1="7" x2="12" y2="17"/><circle cx="8" cy="12" r="1"/><circle cx="16" cy="12" r="1"/></svg></div>
+                <div><h3 class="topic-title">Operations on Integers</h3><span class="topic-level">Advanced</span></div>
+              </div>
+              <p class="topic-description">Addition, subtraction, multiplication and division of integers, properties of operations (commutative, associative, distributive), real-life temperature, elevation and money contexts.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade7\NCERT_Grade7_Maths_Worksheet_Book-36-39.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 7 Exponents and Powers Practice Sheet PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Practice Sheet</a>
+                <a href="assets\Worksheets\Grade7\NCERT_Grade7_Maths_Worksheet_Book-68-86.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 7 Exponents and Powers Answer Key PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Answer Key</a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--purple"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><line x1="8" y1="12" x2="16" y2="12"/></svg></div>
+                <div><h3 class="topic-title">Fractions and Proportional Reasoning</h3><span class="topic-level">Advanced</span></div>
+              </div>
+              <p class="topic-description">Ratio and simplification, the unitary method, percentages, direct and inverse proportion, map scale, discount calculations.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade7\NCERT_Grade7_Maths_Worksheet_Book-40-43.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 7 Exponents and Powers Practice Sheet PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Practice Sheet</a>
+                <a href="assets\Worksheets\Grade7\NCERT_Grade7_Maths_Worksheet_Book-68-86.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 7 Exponents and Powers Answer Key PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Answer Key</a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--cyan"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 9a3 3 0 1 1 6 0c0 2-3 3-3 5"/><circle cx="12" cy="19" r="1"/></svg></div>
+                <div><h3 class="topic-title">Finding the Unknown</h3><span class="topic-level">Advanced</span></div>
+              </div>
+              <p class="topic-description">Structure of an equation, solving linear equations in one variable (balancing/transposition method), translating word problems into equations.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade7\NCERT_Grade7_Maths_Worksheet_Book-44-47.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 7 Exponents and Powers Practice Sheet PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Practice Sheet</a>
+                <a href="assets\Worksheets\Grade7\NCERT_Grade7_Maths_Worksheet_Book-68-86.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 7 Exponents and Powers Answer Key PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Answer Key</a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--purple"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="10" height="10"/><rect x="10" y="10" width="10" height="10"/></svg></div>
+                <div><h3 class="topic-title">Congruent Figures</h3><span class="topic-level">Advanced</span></div>
+              </div>
+              <p class="topic-description">Congruence of line segments, angles and triangles; SSS, SAS, ASA and RHS criteria for triangle congruence.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade7\NCERT_Grade7_Maths_Worksheet_Book-48-51.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 7 Exponents and Powers Practice Sheet PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Practice Sheet</a>
+                <a href="assets\Worksheets\Grade7\NCERT_Grade7_Maths_Worksheet_Book-68-86.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 7 Exponents and Powers Answer Key PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Answer Key</a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--cyan"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v12l-8 4-8-4V6z"/><path d="M12 2v20"/><path d="M4 6l8 4 8-4"/></svg></div>
+                <div><h3 class="topic-title">Visualising Solid Shapes</h3><span class="topic-level">Advanced</span></div>
+              </div>
+              <p class="topic-description">2D vs 3D shapes, faces/edges/vertices of solids, nets of solids, top/front/side views, cube-cutting problems.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade7\NCERT_Grade7_Maths_Worksheet_Book-52-55.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 7 Exponents and Powers Practice Sheet PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Practice Sheet</a>
+                <a href="assets\Worksheets\Grade7\NCERT_Grade7_Maths_Worksheet_Book-68-86.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 7 Exponents and Powers Answer Key PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Answer Key</a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--purple"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v10h10"/><path d="M22 12A10 10 0 1 1 12 2"/></svg></div>
+                <div><h3 class="topic-title">Comparing Quantities</h3><span class="topic-level">Advanced</span></div>
+              </div>
+              <p class="topic-description">Profit and loss percentage, discount and marked price, simple interest.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade7\NCERT_Grade7_Maths_Worksheet_Book-56-59.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 7 Exponents and Powers Practice Sheet PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Practice Sheet</a>
+                <a href="assets\Worksheets\Grade7\NCERT_Grade7_Maths_Worksheet_Book-68-86.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 7 Exponents and Powers Answer Key PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Answer Key</a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--cyan"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="3" height="10"/><rect x="10" y="6" width="3" height="14"/><rect x="16" y="3" width="3" height="17"/></svg></div>
+                <div><h3 class="topic-title">Data Handling</h3><span class="topic-level">Advanced</span></div>
+              </div>
+              <p class="topic-description">Mean, median, mode and range; constructing and interpreting bar graphs; comparing data sets.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade7\NCERT_Grade7_Maths_Worksheet_Book-60-63.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 7 Exponents and Powers Practice Sheet PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Practice Sheet</a>
+                <a href="assets\Worksheets\Grade7\NCERT_Grade7_Maths_Worksheet_Book-68-86.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 7 Exponents and Powers Answer Key PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Answer Key</a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--purple"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="3" x2="12" y2="21"/><path d="M7 7l4 4-4 4"/><path d="M17 7l-4 4 4 4"/></svg></div>
+                <div><h3 class="topic-title">Symmetry</h3><span class="topic-level">Advanced</span></div>
+              </div>
+              <p class="topic-description">Line symmetry, rotational symmetry, order of rotational symmetry, angle of rotation.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade7\NCERT_Grade7_Maths_Worksheet_Book-64-67.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 7 Exponents and Powers Practice Sheet PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Practice Sheet</a>
+                <a href="assets\Worksheets\Grade7\NCERT_Grade7_Maths_Worksheet_Book-68-86.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 7 Exponents and Powers Answer Key PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Answer Key</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ─── GRADE 8 PANEL ─── -->
+        <div class="tab-panel" id="panel-grade-8" role="tabpanel" aria-labelledby="tab-8" hidden>
+          <div class="topic-grid">
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--cyan"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v12l-8 4-8-4V6z"/><path d="M12 2v20"/><path d="M4 6l8 4 8-4"/></svg></div>
+                <div><h3 class="topic-title">A Square and A Cube</h3><span class="topic-level">Expert</span></div>
+              </div>
+              <p class="topic-description">Perfect squares, square roots, perfect cubes, cube roots, number patterns and properties.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade8\grade8_math_worksheets-3-6.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 8 Quadratic Equations Practice Sheet PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Practice Sheet</a>
+                <a href="assets\Worksheets\Grade8\grade8_math_worksheets-60-73.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 8 Quadratic Equations Answer Key PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Answer Key</a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--purple"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 18l6-12"/><path d="M14 8l4-4"/><path d="M18 4v4h-4"/></svg></div>
+                <div><h3 class="topic-title">Power Play</h3><span class="topic-level">Expert</span></div>
+              </div>
+              <p class="topic-description">Exponential notation, laws of exponents, powers of numbers, large number representation.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade8\grade8_math_worksheets-7-10.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 8 Quadratic Equations Practice Sheet PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Practice Sheet</a>
+                <a href="assets\Worksheets\Grade8\grade8_math_worksheets-60-73.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 8 Quadratic Equations Answer Key PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Answer Key</a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--cyan"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 6h4v12"/><path d="M14 6a4 4 0 1 1 0 12a4 4 0 1 1 0-12"/></svg></div>
+                <div><h3 class="topic-title">A Story of Numbers</h3><span class="topic-level">Expert</span></div>
+              </div>
+              <p class="topic-description">Number systems, bases, Roman numerals, counting systems and number representation.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade8\grade8_math_worksheets-11-14.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 8 Quadratic Equations Practice Sheet PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Practice Sheet</a>
+                <a href="assets\Worksheets\Grade8\grade8_math_worksheets-60-73.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 8 Quadratic Equations Answer Key PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Answer Key</a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--purple"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,6 18,4 20,16 6,18"/></svg></div>
+                <div><h3 class="topic-title">Quadrilaterals</h3><span class="topic-level">Expert</span></div>
+              </div>
+              <p class="topic-description">Properties of quadrilaterals, parallelograms, rectangles, rhombuses and angle relationships.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade8\grade8_math_worksheets-15-18.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 8 Quadratic Equations Practice Sheet PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Practice Sheet</a>
+                <a href="assets\Worksheets\Grade8\grade8_math_worksheets-60-73.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 8 Quadratic Equations Answer Key PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Answer Key</a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--cyan"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16"/><line x1="12" y1="4" x2="12" y2="20"/><line x1="4" y1="12" x2="20" y2="12"/></svg></div>
+                <div><h3 class="topic-title">Number Play</h3><span class="topic-level">Expert</span></div>
+              </div>
+              <p class="topic-description">Factors, multiples, divisibility tests, prime factorisation and number patterns.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade8\grade8_math_worksheets-19-22.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 8 Quadratic Equations Practice Sheet PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Practice Sheet</a>
+                <a href="assets\Worksheets\Grade8\grade8_math_worksheets-60-73.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 8 Quadratic Equations Answer Key PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Answer Key</a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--purple"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5v14"/><path d="M7 7l10 10"/></svg></div>
+                <div><h3 class="topic-title">We Distribute, Yet Things Multiply</h3><span class="topic-level">Expert</span></div>
+              </div>
+              <p class="topic-description">Distributive property, algebraic manipulation, multiplication of expressions and patterns.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade8\grade8_math_worksheets-23-26.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 8 Quadratic Equations Practice Sheet PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Practice Sheet</a>
+                <a href="assets\Worksheets\Grade8\grade8_math_worksheets-60-73.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 8 Quadratic Equations Answer Key PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Answer Key</a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--cyan"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><line x1="8" y1="12" x2="16" y2="12"/></svg></div>
+                <div><h3 class="topic-title">Proportional Reasoning – I</h3><span class="topic-level">Expert</span></div>
+              </div>
+              <p class="topic-description">Ratios, proportions, unitary method, scaling and real-life applications.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade8\grade8_math_worksheets-27-30.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 8 Quadratic Equations Practice Sheet PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Practice Sheet</a>
+                <a href="assets\Worksheets\Grade8\grade8_math_worksheets-60-73.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 8 Quadratic Equations Answer Key PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Answer Key</a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--purple"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="7" cy="7" r="2"/><line x1="8" y1="16" x2="16" y2="8"/><circle cx="17" cy="17" r="2"/></svg></div>
+                <div><h3 class="topic-title">Fractions in Disguise</h3><span class="topic-level">Expert</span></div>
+              </div>
+              <p class="topic-description">Rational numbers, equivalent forms, comparison and arithmetic operations.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade8\grade8_math_worksheets-31-35.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 8 Quadratic Equations Practice Sheet PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Practice Sheet</a>
+                <a href="assets\Worksheets\Grade8\grade8_math_worksheets-60-73.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 8 Quadratic Equations Answer Key PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Answer Key</a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--cyan"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,18 5,6 18,18"/><rect x="5" y="14" width="4" height="4"/></svg></div>
+                <div><h3 class="topic-title">The Baudhayana–Pythagoras Theorem</h3><span class="topic-level">Expert</span></div>
+              </div>
+              <p class="topic-description">Right triangles, Pythagorean triples, theorem applications and geometric reasoning.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade8\grade8_math_worksheets-36-39.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 8 Quadratic Equations Practice Sheet PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Practice Sheet</a>
+                <a href="assets\Worksheets\Grade8\grade8_math_worksheets-60-73.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 8 Quadratic Equations Answer Key PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Answer Key</a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--purple"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 19L19 5"/><path d="M13 5h6v6"/></svg></div>
+                <div><h3 class="topic-title">Proportional Reasoning – II</h3><span class="topic-level">Expert</span></div>
+              </div>
+              <p class="topic-description">Direct variation, inverse variation, rates, percentages and proportional thinking.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade8\grade8_math_worksheets-40-43.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 8 Quadratic Equations Practice Sheet PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Practice Sheet</a>
+                <a href="assets\Worksheets\Grade8\grade8_math_worksheets-60-73.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 8 Quadratic Equations Answer Key PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Answer Key</a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--cyan"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="2"/><path d="M10 7L5 20"/><path d="M14 7L19 20"/><path d="M8 15H16"/></svg></div>
+                <div><h3 class="topic-title">Exploring Some Geometric Themes</h3><span class="topic-level">Expert</span></div>
+              </div>
+              <p class="topic-description">Symmetry, geometric patterns, constructions and spatial reasoning.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade8\grade8_math_worksheets-44-47.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 8 Quadratic Equations Practice Sheet PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Practice Sheet</a>
+                <a href="assets\Worksheets\Grade8\grade8_math_worksheets-60-73.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 8 Quadratic Equations Answer Key PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Answer Key</a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--purple"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="20" x2="20" y2="20"/><line x1="4" y1="20" x2="4" y2="4"/><circle cx="10" cy="12" r="1"/><circle cx="15" cy="8" r="1"/></svg></div>
+                <div><h3 class="topic-title">Tales by Dots and Lines/h3><span class="topic-level">Expert</span></div>
+              </div>
+              <p class="topic-description">Coordinates, plotting points, patterns using points and lines, graphical reasoning.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade8\grade8_math_worksheets-48-51.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 8 Quadratic Equations Practice Sheet PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Practice Sheet</a>
+                <a href="assets\Worksheets\Grade8\grade8_math_worksheets-60-73.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 8 Quadratic Equations Answer Key PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Answer Key</a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--cyan"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></svg></div>
+                <div><h3 class="topic-title">Algebra Play</h3><span class="topic-level">Expert</span></div>
+              </div>
+              <p class="topic-description">Variables, algebraic expressions, equations, simplification and problem solving.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade8\grade8_math_worksheets-52-55.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 8 Quadratic Equations Practice Sheet PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Practice Sheet</a>
+                <a href="assets\Worksheets\Grade8\grade8_math_worksheets-60-73.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 8 Quadratic Equations Answer Key PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Answer Key</a>
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-card-header">
+                <div class="topic-icon-wrap topic-icon-wrap--purple"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16"/><line x1="10" y1="4" x2="10" y2="20"/><line x1="16" y1="4" x2="16" y2="20"/><line x1="4" y1="10" x2="20" y2="10"/><line x1="4" y1="16" x2="20" y2="16"/></svg></div>
+                <div><h3 class="topic-title">Area</h3><span class="topic-level">Expert</span></div>
+              </div>
+              <p class="topic-description">Area of polygons, composite figures, area relationships and practical applications.</p>
+              <div class="topic-actions">
+                <a href="assets\Worksheets\Grade8\grade8_math_worksheets-56-59.pdf" class="btn btn--download btn--practice" download aria-label="Download Grade 8 Quadratic Equations Practice Sheet PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Practice Sheet</a>
+                <a href="assets\Worksheets\Grade8\grade8_math_worksheets-60-73.pdf" class="btn btn--download btn--answer" download aria-label="Download Grade 8 Quadratic Equations Answer Key PDF"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Answer Key</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         REQUEST & FEEDBACK HUB
+    ═══════════════════════════════════════════════════════════ -->
+    <section class="hub-section" id="hub" aria-labelledby="hub-heading">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-tag">Your Voice Matters</span>
+          <h2 class="section-heading" id="hub-heading">Request &amp; <span class="text-gradient">Feedback Hub</span></h2>
+          <p class="section-subtext">Tell us what you need. We read every message and update our sheet library regularly.</p>
+        </div>
+
+        <div class="hub-grid">
+
+          <!-- Form 1: Request a Topic -->
+          <div class="hub-card" id="request-card">
+            <div class="hub-card-top">
+              <div class="hub-card-icon hub-card-icon--cyan" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+              </div>
+              <div>
+                <h3 class="hub-card-heading">Request a Topic Sheet</h3>
+                <p class="hub-card-subtext">Don't see a topic you need? Ask us to create it!</p>
+              </div>
+            </div>
+
+            <form class="hub-form" id="request-form" novalidate aria-label="Request a topic form">
+              <div class="form-group">
+                <label for="req-name" class="form-label">Your Name <span class="form-optional">(Optional)</span></label>
+                <input type="text" id="req-name" name="req-name" class="form-input" placeholder="e.g. Sarah" autocomplete="given-name" />
+              </div>
+
+              <div class="form-group">
+                <label for="req-grade" class="form-label">Your Grade <span class="form-required" aria-label="required">*</span></label>
+                <div class="select-wrapper">
+                  <select id="req-grade" name="req-grade" class="form-input form-select" required aria-required="true">
+                    <option value="" disabled selected>Select your grade…</option>
+                    <option value="5">Grade 5</option>
+                    <option value="6">Grade 6</option>
+                    <option value="7">Grade 7</option>
+                    <option value="8">Grade 8</option>
+                  </select>
+                  <svg class="select-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="req-topic" class="form-label">Topic Name <span class="form-required" aria-label="required">*</span></label>
+                <input type="text" id="req-topic" name="req-topic" class="form-input" placeholder="e.g. Trigonometry Basics" required aria-required="true" />
+              </div>
+
+              <div class="form-group">
+                <label for="req-struggle" class="form-label">What are you struggling with in this topic?</label>
+                <textarea id="req-struggle" name="req-struggle" class="form-input form-textarea" placeholder="Describe your specific difficulties — the more detail, the better we can help!" rows="4" aria-describedby="req-struggle-hint"></textarea>
+                <span class="form-hint" id="req-struggle-hint">Your answer helps us tailor the worksheet difficulty.</span>
+              </div>
+
+              <button type="submit" class="btn btn--primary btn--full" id="request-submit-btn">
+                <span>Submit Request</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              </button>
+            </form>
+          </div>
+
+          <!-- Form 2: Worksheet Feedback -->
+          <div class="hub-card" id="feedback-card">
+            <div class="hub-card-top">
+              <div class="hub-card-icon hub-card-icon--purple" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+              <div>
+                <h3 class="hub-card-heading">Worksheet Feedback</h3>
+                <p class="hub-card-subtext">Let us know how we're doing. Your rating shapes future sheets!</p>
+              </div>
+            </div>
+
+            <form class="hub-form" id="feedback-form" novalidate aria-label="Worksheet feedback form">
+
+              <div class="form-group">
+                <label for="fb-sheet" class="form-label">Which worksheet? <span class="form-required" aria-label="required">*</span></label>
+                <input type="text" id="fb-sheet" name="fb-sheet" class="form-input" placeholder="e.g. Grade 6 – Ratio &amp; Proportion" required aria-required="true" />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" id="star-rating-label">Your Rating <span class="form-required" aria-label="required">*</span></label>
+                <div class="star-rating" role="radiogroup" aria-labelledby="star-rating-label" id="star-rating">
+                  <input type="radio" name="rating" id="star5" value="5" class="star-input" aria-label="5 stars – Excellent" />
+                  <label for="star5" class="star-label" aria-hidden="true" title="5 — Excellent">★</label>
+                  <input type="radio" name="rating" id="star4" value="4" class="star-input" aria-label="4 stars – Good" />
+                  <label for="star4" class="star-label" aria-hidden="true" title="4 — Good">★</label>
+                  <input type="radio" name="rating" id="star3" value="3" class="star-input" aria-label="3 stars – Okay" />
+                  <label for="star3" class="star-label" aria-hidden="true" title="3 — Okay">★</label>
+                  <input type="radio" name="rating" id="star2" value="2" class="star-input" aria-label="2 stars – Needs Work" />
+                  <label for="star2" class="star-label" aria-hidden="true" title="2 — Needs Work">★</label>
+                  <input type="radio" name="rating" id="star1" value="1" class="star-input" aria-label="1 star – Poor" />
+                  <label for="star1" class="star-label" aria-hidden="true" title="1 — Poor">★</label>
+                </div>
+                <p class="star-description" id="star-description" aria-live="polite">Click a star to rate.</p>
+              </div>
+
+              <div class="form-group">
+                <label for="fb-difficulty" class="form-label">Difficulty Level <span class="form-required" aria-label="required">*</span></label>
+                <div class="difficulty-btns" role="group" aria-label="Difficulty level selection" id="difficulty-group">
+                  <button type="button" class="diff-btn" data-value="too-easy" aria-pressed="false">😴 Too Easy</button>
+                  <button type="button" class="diff-btn" data-value="just-right" aria-pressed="false">🎯 Just Right</button>
+                  <button type="button" class="diff-btn" data-value="too-hard" aria-pressed="false">🤯 Too Hard</button>
+                </div>
+                <input type="hidden" id="fb-difficulty" name="fb-difficulty" value="" />
+              </div>
+
+              <div class="form-group">
+                <label for="fb-review" class="form-label">Brief Review</label>
+                <textarea id="fb-review" name="fb-review" class="form-input form-textarea" placeholder="Anything you'd like to share — clarity, layout, typos, suggestions…" rows="4"></textarea>
+              </div>
+
+              <button type="submit" class="btn btn--primary btn--full btn--purple" id="feedback-submit-btn">
+                <span>Submit Feedback</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════════════════════ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <!-- Replace with footer version of the logo (white/mono version, ~140×35px) -->
+        <!-- Logo: MathQuest wordmark in white, smaller than header version -->
+        <img src="assets/logo-white.png" alt="MathQuest" class="footer-logo-img" onerror="this.style.display='none'" />
+        <span class="footer-logo-text">Math<span class="logo-accent">Quest</span></span>
+        <p class="footer-tagline">Free maths practice sheets for every student, every level.</p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <div class="footer-nav-col">
+          <h4 class="footer-nav-heading">Grades</h4>
+          <ul role="list">
+            <li><a href="#sheets" class="footer-link" data-scroll-tab="5">Grade 5 Sheets</a></li>
+            <li><a href="#sheets" class="footer-link" data-scroll-tab="6">Grade 6 Sheets</a></li>
+            <li><a href="#sheets" class="footer-link" data-scroll-tab="7">Grade 7 Sheets</a></li>
+            <li><a href="#sheets" class="footer-link" data-scroll-tab="8">Grade 8 Sheets</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-col">
+          <h4 class="footer-nav-heading">Resources</h4>
+          <ul role="list">
+            <li><a href="#challenge" class="footer-link">Weekly Challenge</a></li>
+            <li><a href="#hub" class="footer-link">Request a Sheet</a></li>
+            <li><a href="#hub" class="footer-link">Give Feedback</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-col">
+          <h4 class="footer-nav-heading">Connect</h4>
+          <ul role="list">
+            <!-- Replace these placeholder links with your actual social/contact URLs -->
+            <li><a href="#" class="footer-link" aria-label="MathQuest on Instagram">Instagram</a></li>
+            <li><a href="#" class="footer-link" aria-label="MathQuest on YouTube">YouTube</a></li>
+            <li><a href="mailto:hello@mathquest.edu" class="footer-link">Email Us</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; <span id="footer-year"></span> MathQuest. All worksheets are free for personal and classroom use.</p>
+      <p class="footer-love">Made with <span aria-label="love">♥</span> for curious minds everywhere.</p>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       CUSTOM ALERT MODAL
+  ═══════════════════════════════════════════════════════════ -->
+  <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-desc" hidden>
+    <div class="modal" id="modal">
+      <div class="modal-icon" id="modal-icon" aria-hidden="true"></div>
+      <h3 class="modal-title" id="modal-title"></h3>
+      <p class="modal-desc" id="modal-desc"></p>
+      <button class="btn btn--primary modal-close-btn" id="modal-close-btn" aria-label="Close notification">
+        Awesome, thanks!
+      </button>
+    </div>
+  </div>
+
+  <!-- Grade-jump scroll target (used by grade card buttons to jump to sheets section with correct tab pre-selected) -->
+  <script src="script.js" defer></script>
+</body>
+</html>
